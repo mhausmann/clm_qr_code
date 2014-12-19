@@ -1,14 +1,14 @@
-How the integration with the API works.
+### How the integration with the API works. ###
 
-A user can provision a CLM Service by scanning a QR code from a website or menu.  Once the user has scanned the QR code it will re-direct them to serv_prov.php?=[CLM_Service] the output will be written to service.php and the file will contain service=[CLM_Service].  On the CLM PM a script named clm-qr.sh will be poling for the contents of service.php.  Once it finds that there is a new value through using curl it will then select one of the case statements that matches the corrosponding service.  This will then call the clm-qr_apicall.sh and provision a new service.
+A user can provision a CLM Service by scanning a QR code from a website or menu.  Once the user has scanned the QR code it will re-direct them to serv_prov.php?=[CLM_Service] the output will be written to service.php and the file will contain service=[CLM_Service].  On the CLM PM a script named clm-qr.sh will be polling for the contents of service.php.  Once it finds that there is a new value through using curl it will then select one of the case statements that matches the corrosponding service.  This will then call the clm-qr_apicall.sh and provision a new service.
 
-Pre requisites
+### Pre-requisites ###
 
 Install CLM SDK on CLM Platform Manager
 Instructions: https://communities.bmc.com/docs/DOC-30711  
 *Suggest using sdk_install.gz to perform installation
 
-Instructions to setup integration
+### Instructions to setup integration ###
 
 1. Install CLM SDK on CLM Platform Manager
 
@@ -24,11 +24,10 @@ On a webserver with a static IP or domain name copy the contents of www to a web
 
 4. Test the app
 
-The flow should be
+The flow should be:
 
-user scans qr code "Rhel 6" -> redirects to http://externalWebsite/serv_prov.php?=rhel6 -> clm-qr.sh is polling http://externalWebsite/service.php -> it then calls the rhel6 case statement and executes clm-qr_apicall.sh "CLM Service" <description name> to provision a server. -> You should see services being provisioned within CLM now. 
-
-
- 
-
-Next copy the bin directory to a server that can run CLM.
+user scans qr code "Rhel 6" 
+-> redirects to http://externalWebsite/serv_prov.php?=rhel6 
+-> clm-qr.sh is polling http://externalWebsite/service.php 
+-> it then calls the rhel6 case statement and executes clm-qr_apicall.sh "CLM Service" <description name> to provision a server. 
+-> You should see services being provisioned within CLM now. 
